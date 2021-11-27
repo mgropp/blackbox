@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">BlackBox</string>
+    <string name="button_check">Check</string>
+    <string name="button_new_game">New Game</string>
+    <string name="info_text">Hints: %d  Atoms: %d/%d</string>
+</resources>

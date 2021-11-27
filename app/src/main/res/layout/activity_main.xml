@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/Theme.BlackBox"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        style="@style/ScoreBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/checkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:text="Check" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/scoreText"
+            style="@style/ScoreBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="1"
+            android:minLines="1"
+            android:paddingHorizontal="8sp"
+            android:paddingVertical="6sp"
+            android:text="Atoms: 1/2"
+            android:textSize="20sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <de.martingropp.blackbox.BlackBoxView
+        android:id="@+id/blackBox"
+        style="@style/Widget.Theme.BlackBox.MyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingTop="40dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="40dp"
+    />
+</LinearLayout>

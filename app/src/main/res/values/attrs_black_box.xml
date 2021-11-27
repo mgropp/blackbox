@@ -1,0 +1,8 @@
+<resources>
+    <declare-styleable name="BlackBox">
+        <attr name="board1Style" format="reference" />
+        <attr name="board2Style" format="reference" />
+        <attr name="buttonOnStyle" format="reference" />
+        <attr name="buttonOffStyle" format="reference" />
+    </declare-styleable>
+</resources>
