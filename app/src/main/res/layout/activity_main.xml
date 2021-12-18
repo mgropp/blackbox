@@ -15,19 +15,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/checkButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:text="Check" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
         <TextView
             android:id="@+id/scoreText"
             style="@style/ScoreBar"
@@ -39,8 +26,23 @@
             android:paddingHorizontal="8sp"
             android:paddingVertical="6sp"
             android:text="Atoms: 1/2"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:visibility="visible" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/checkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/purple_500"
+            android:enabled="false"
+            android:text="Check" />
+
     </LinearLayout>
 
     <de.martingropp.blackbox.BlackBoxView

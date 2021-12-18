@@ -3,4 +3,10 @@
     <string name="button_check">Check</string>
     <string name="button_new_game">New Game</string>
     <string name="info_text">Hints: %d  Atoms: %d/%d</string>
+    <string name="title_activity_main">BlackBox</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="action_settings">Settings</string>
+    <string name="num_columns_title">Columns</string>
+    <string name="num_rows_title">Rows</string>
+    <string name="num_atoms_title">Atoms</string>
 </resources>

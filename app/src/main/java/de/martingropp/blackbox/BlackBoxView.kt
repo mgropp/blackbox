@@ -2,7 +2,6 @@ package de.martingropp.blackbox
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +18,8 @@ class BlackBoxView :
     BlackBoxBoard.MarkerListener,
     BlackBoxBoard.HintListener
 {
+    var debug = false
+
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     private var tileControls: Array<Array<TextView>>? = null
@@ -37,24 +38,23 @@ class BlackBoxView :
             removeAllViews()
 
             if (value !== null) {
-                createGrid(this, value.numCols, value.numCols, value)
+                createGrid(this, value.numCols, value.numRows, value)
+
+                updateHints()
+                updateMarkers(showSolution)
+
                 value.addMarkerListener(this)
                 value.addHintListener(this)
 
-                // debug
-                /*
-                val fieldControls = this.fieldControls
-                if (fieldControls !== null) {
-                    for (y in 0 until value.numRows) {
-                        for (x in 0 until value.numCols) {
-                            if (value.getAtom(x, y)) {
-                                fieldControls[y][x].setBackgroundColor(0x00ff00)
-                                fieldControls[y][x].text = "⦿"
-                            }
+                if (debug) {
+                    val tileControls = this.tileControls
+                    if (tileControls !== null) {
+                        for (pos in value.getAtoms()) {
+                            tileControls[pos.second][pos.first].setBackgroundColor(0x00ff00)
+                            tileControls[pos.second][pos.first].text = "⦿"
                         }
                     }
                 }
-                */
             }
         }
 
@@ -139,10 +139,10 @@ class BlackBoxView :
                 }
         }
 
-        val topButtons = createButtons(numRows, null, -1)
-        val bottomButtons = createButtons(numRows, null, numCols)
-        val leftButtons = createButtons(numCols, -1, null)
-        val rightButtons = createButtons(numCols, numRows, null)
+        val topButtons = createButtons(numCols, null, -1)
+        val bottomButtons = createButtons(numCols, null, numRows)
+        val leftButtons = createButtons(numRows, -1, null)
+        val rightButtons = createButtons(numRows, numCols, null)
 
         this.buttonControls = leftButtons + rightButtons + topButtons + bottomButtons
 
@@ -228,7 +228,6 @@ class BlackBoxView :
     }
 
     override fun hintAdded(x: Int, y: Int, hint: Hint) {
-        Log.i(null, "Hint added at $x $y: $hint")
         val buttonControls = this.buttonControls
         val board = this.board
         if (buttonControls !== null && board !== null) {
@@ -242,24 +241,17 @@ class BlackBoxView :
                 hint.hit -> "H"
                 else -> hint.reference.toString()
             }
+        }
+    }
 
-            /*
-            //context.theme.
-            val attrs = context.obtainStyledAttributes(
-                R.style.ButtonOn,
-                intArrayOf(android.R.attr.backgroundTint, android.R.attr.strokeColor)
-            )
+    private fun updateHints() {
+        val board = this.board
+        if (board === null) {
+            return
+        }
 
-            button.backgroundTintList = ColorStateList.valueOf(attrs.getColor(0, Color.GREEN))
-
-            val background = button.background
-            if (background is RippleDrawable) {
-                background.
-            }
-            Log.i(null, "background type ${button.background::class}")
-
-            attrs.recycle()
-            */
+        for ((pos, hint) in board.getHints().entries) {
+            hintAdded(pos.first, pos.second, hint)
         }
     }
 

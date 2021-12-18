@@ -1,0 +1,17 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="Preferences"
+>
+    <EditTextPreference
+        app:key="num_atoms"
+        app:title="@string/num_atoms_title"
+        app:useSimpleSummaryProvider="true" />
+    <EditTextPreference
+        app:key="num_columns"
+        app:title="@string/num_columns_title"
+        app:useSimpleSummaryProvider="true" />
+    <EditTextPreference
+        app:key="num_rows"
+        app:title="@string/num_rows_title"
+        app:useSimpleSummaryProvider="true" />
+</PreferenceScreen>

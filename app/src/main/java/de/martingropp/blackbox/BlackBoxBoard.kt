@@ -20,9 +20,9 @@ class BlackBoxBoard(
 
     private val atoms: Set<Pair<Int, Int>>
     private val markers: MutableSet<Pair<Int, Int>> = mutableSetOf()
+    private val hints: MutableMap<Pair<Int, Int>, Hint> = mutableMapOf()
 
     private var nextHintReference = 0
-    private val hintArray: Array<Hint?> = arrayOfNulls(2*numRows + 2*numCols)
     private var numUniqueHints = 0
 
     private val markerListeners: MutableList<MarkerListener> = mutableListOf()
@@ -47,7 +47,7 @@ class BlackBoxBoard(
     }
 
     fun getAtoms(): Set<Pair<Int, Int>> {
-        return atoms
+        return atoms.toSet()
     }
 
     fun addMarkerListener(listener: MarkerListener) {
@@ -79,11 +79,15 @@ class BlackBoxBoard(
     }
 
     fun getHint(x: Int, y: Int): Hint? {
-        return hintArray[Util.getEdgeFieldIndex(x, y, numCols, numRows)]
+        return hints[Pair(x, y)]
+    }
+
+    fun getHints(): Map<Pair<Int, Int>, Hint> {
+        return hints.toMap()
     }
 
     private fun setHint(x: Int, y: Int, hint: Hint, secondary: Boolean = false) {
-        hintArray[Util.getEdgeFieldIndex(x, y, numCols, numRows)] = hint
+        hints[Pair(x, y)] = hint
         if (!secondary) {
             numUniqueHints++
         }
