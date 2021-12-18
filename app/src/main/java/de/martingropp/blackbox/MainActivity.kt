@@ -83,12 +83,12 @@ class MainActivity : AppCompatActivity() {
                 .setMessage("Settings changed. Restart game?")
                 .setPositiveButton(
                     "Yes"
-                ) { dialog, which ->
+                ) { _, _ ->
                     startGame(true)
                 }
                 .setNegativeButton(
                     "No"
-                ) { dialog, which ->
+                ) { _, _ ->
                 }
                 .show()
         }
